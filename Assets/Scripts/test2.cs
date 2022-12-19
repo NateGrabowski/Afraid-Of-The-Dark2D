@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHeartRate : MonoBehaviour
+public class test2 : MonoBehaviour
 {
     [SerializeField] float maxHeartRate = 250f;
     [SerializeField] float minHeartRate = 50f;
@@ -11,13 +11,6 @@ public class PlayerHeartRate : MonoBehaviour
 
     public float currentHeartRate { get; private set; } = 75f;
     public float timeInDarkness; //Trigger used for exponentially increasing heartrate
-
-    void FixedUpdate()
-    {
-        InDarkness(timeInDarkness);
-        ConstrainHeartRate();
-        Debug.Log("Heart Rate = " + Mathf.Round(this.currentHeartRate));
-    }
     float InDarkness(float timeInDarkness)
     {
         //increase heartrate exponentially based on timeInDarkness
@@ -60,25 +53,5 @@ public class PlayerHeartRate : MonoBehaviour
         {
             return currentHeartRate += heartRateIncreaseRate * Time.deltaTime;
         }
-    }
-    float LeavingDarkness()
-    {
-        return currentHeartRate -= heartRateDecreaseRate * Time.deltaTime;
-    }
-    void ConstrainHeartRate()
-    {
-        // cap the heart rate
-        if (currentHeartRate > maxHeartRate)
-        {
-            currentHeartRate = maxHeartRate;
-        }
-        else if (currentHeartRate < minHeartRate)
-        {
-            currentHeartRate = minHeartRate;
-        }
-    }
-    float GhostContact(float heartrate)
-    {
-        return currentHeartRate += heartrate;
     }
 }
