@@ -1,18 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Character")]
+    [SerializeField] float movementSpeed = 1f;
+    Animator myAnimator;
 
-    // Update is called once per frame
+    Rigidbody2D myRigidbody;
+    Vector2 moveInput;
+    enum LastDirection { up, down, left, right };
+
+    private void Awake()
+    {
+        myAnimator = GetComponent<Animator>();
+        myRigidbody = GetComponent<Rigidbody2D>();
+    }
     void Update()
     {
-        
+        Animations();
     }
+
+    void Animations()
+    {
+        myAnimator.SetFloat("moveX", moveInput.x);
+        myAnimator.SetFloat("moveY", moveInput.y);
+        myAnimator.SetFloat("Speed", moveInput.sqrMagnitude); //speed is at 0 if not moving
+
+        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
+        {
+            myAnimator.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
+            myAnimator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
+        }
+
+    }
+
+
+    void OnMove(InputValue val)
+    {
+        moveInput = val.Get<Vector2>();
+        myRigidbody.velocity = moveInput * movementSpeed;
+    }
+
 }
