@@ -10,17 +10,15 @@ public class PlayerMovement : MonoBehaviour
     [Header("Character")]
     [SerializeField] float movementSpeed = 1f;
     Animator myAnimator;
-
     Rigidbody2D myRigidbody;
     Vector2 moveInput;
-    enum LastDirection { up, down, left, right };
 
     private void Awake()
     {
         myAnimator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
     }
-    void Update()
+    void FixedUpdate()
     {
         Animations();
     }
@@ -39,11 +37,9 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-
     void OnMove(InputValue val)
     {
         moveInput = val.Get<Vector2>();
         myRigidbody.velocity = moveInput * movementSpeed;
     }
-
 }

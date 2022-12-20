@@ -10,7 +10,8 @@ public class PlayerHeartRate : MonoBehaviour
     [SerializeField] float maxHeartRate = 250f;
     [SerializeField] float minHeartRate = 50f;
     [SerializeField] float heartRateIncreaseRate = 1f;
-    [SerializeField] float heartRateDecreaseRate = 0.5f;
+    [SerializeField] float heartRateDecreaseRate = 10f;
+    [SerializeField] float inDarknessModifier = 8f;
     [Header("GUI")]
     [SerializeField] TextMeshProUGUI displayedHeartRate;
 
@@ -18,59 +19,58 @@ public class PlayerHeartRate : MonoBehaviour
     public float timeInDarkness; //Trigger used for exponentially increasing heartrate
 
 
-
-
-
     void FixedUpdate()
     {
-        InDarkness(timeInDarkness);
+        Debug.Log(timeInDarkness);
+        if (timeInDarkness > 0f)
+        {
+            timeInDarkness += 1f * Time.deltaTime;
+            InDarkness(timeInDarkness);
+        }
+        else
+        {
+            LeavingDarkness();
+        }
         ConstrainHeartRate();
-        displayedHeartRate.text = "bpm = " + Mathf.Round(currentHeartRate).ToString();
-
+        displayedHeartRate.text = "bpm = " + Mathf.Round(currentHeartRate).ToString(); //This populates the On Screen heartrate GUI
 
     }
     float InDarkness(float timeInDarkness)
     {
+        float heartRateIncrease = (heartRateIncreaseRate * timeInDarkness) / inDarknessModifier;
         //increase heartrate exponentially based on timeInDarkness
-        if (timeInDarkness >= 120f)
-        {
-            //trigger UI, "you are extremely terrified"
-            return currentHeartRate += heartRateIncreaseRate * Time.deltaTime;
-        }
-        else if (timeInDarkness >= 90f)
-        {
-            //trigger UI, "you are really terrified"
-            return currentHeartRate += heartRateIncreaseRate * Time.deltaTime;
-        }
-        else if (timeInDarkness >= 60f)
+
+
+        if (timeInDarkness >= 60f)
         {
             //trigger UI, "you are terrified"
-            return currentHeartRate += heartRateIncreaseRate * Time.deltaTime;
+            return currentHeartRate += heartRateIncrease * Time.deltaTime;
         }
         else if (timeInDarkness >= 45f)
         {
             //trigger UI, "you are terrified"
-            return currentHeartRate += heartRateIncreaseRate * Time.deltaTime;
+            return currentHeartRate += heartRateIncrease * Time.deltaTime;
         }
         else if (timeInDarkness >= 30f)
         {
             //trigger UI, "you are frightened"
-            return currentHeartRate += heartRateIncreaseRate * Time.deltaTime;
+            return currentHeartRate += heartRateIncrease * Time.deltaTime;
         }
         else if (timeInDarkness >= 20f)
         {
             //trigger UI, "you are scared"
-            return currentHeartRate += heartRateIncreaseRate * Time.deltaTime;
+            return currentHeartRate += heartRateIncrease * Time.deltaTime;
         }
         else if (timeInDarkness >= 5f)
         {
             //trigger UI, "you are getting worried"
-            return currentHeartRate += heartRateIncreaseRate * Time.deltaTime;
+            return currentHeartRate += heartRateIncrease * Time.deltaTime;
         }
         else // steadily increase heart rate
         {
             return currentHeartRate += heartRateIncreaseRate * Time.deltaTime;
         }
+
     }
     float LeavingDarkness()
     {
