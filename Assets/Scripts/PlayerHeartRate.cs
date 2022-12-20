@@ -1,22 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
 
 public class PlayerHeartRate : MonoBehaviour
 {
+    [Header("Heartrate Modifiers")]
     [SerializeField] float maxHeartRate = 250f;
     [SerializeField] float minHeartRate = 50f;
     [SerializeField] float heartRateIncreaseRate = 1f;
     [SerializeField] float heartRateDecreaseRate = 0.5f;
+    [Header("GUI")]
+    [SerializeField] TextMeshProUGUI displayedHeartRate;
 
     public float currentHeartRate { get; private set; } = 75f;
     public float timeInDarkness; //Trigger used for exponentially increasing heartrate
+
+
+
+
 
     void FixedUpdate()
     {
         InDarkness(timeInDarkness);
         ConstrainHeartRate();
-        Debug.Log("Heart Rate = " + Mathf.Round(this.currentHeartRate));
+        displayedHeartRate.text = "bpm = " + Mathf.Round(currentHeartRate).ToString();
+
+
     }
     float InDarkness(float timeInDarkness)
     {

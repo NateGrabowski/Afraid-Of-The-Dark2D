@@ -265,6 +265,7 @@ MonoBehaviour:
   minHeartRate: 50
   heartRateIncreaseRate: 1
   heartRateDecreaseRate: 0.5
+  displayedHeartRate: {fileID: 876637213}
   timeInDarkness: 0
 --- !u!1001 &340633876
 PrefabInstance:
@@ -647,8 +648,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -2.331, y: 1.0136}
-  m_SizeDelta: {x: 4.662, y: 2.0272}
+  m_AnchoredPosition: {x: -2.5329, y: 0.5166}
+  m_SizeDelta: {x: 5.0658, y: 1.0332}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &876637213
 MonoBehaviour:
