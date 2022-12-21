@@ -15,13 +15,13 @@ public class PlayerHeartRate : MonoBehaviour
     [Header("GUI")]
     [SerializeField] TextMeshProUGUI displayedHeartRate;
 
+
     public float currentHeartRate { get; private set; } = 75f;
     public float timeInDarkness; //Trigger used for exponentially increasing heartrate
 
 
     void FixedUpdate()
     {
-        Debug.Log(timeInDarkness);
         if (timeInDarkness > 0f)
         {
             timeInDarkness += 1f * Time.deltaTime;
@@ -35,7 +35,7 @@ public class PlayerHeartRate : MonoBehaviour
         displayedHeartRate.text = "bpm = " + Mathf.Round(currentHeartRate).ToString(); //This populates the On Screen heartrate GUI
 
     }
-    float InDarkness(float timeInDarkness)
+    float InDarkness(float timeInDarkness) //Modifies heartrate based on how long in Darkness
     {
         float heartRateIncrease = (heartRateIncreaseRate * timeInDarkness) / inDarknessModifier;
         //increase heartrate exponentially based on timeInDarkness
