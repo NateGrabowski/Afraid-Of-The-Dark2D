@@ -88,8 +88,14 @@ public class PlayerHeartRate : MonoBehaviour
             currentHeartRate = minHeartRate;
         }
     }
-    float GhostContact(float heartrate)
+    public float GhostContact()
     {
-        return currentHeartRate += heartrate;
+        return currentHeartRate += 15;
+    }
+
+    public float GhostAttack(float attackDamage)
+    {
+        //Debug.Log("player got hit for " + attackDamage);
+        return currentHeartRate += attackDamage;
     }
 }

@@ -115,7 +115,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_0
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 45
+        width: 115
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c027510ea049cf41a957a1c6af3aebf
+      internalID: -797008394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_1
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 36
+        width: 115
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78807a93e21d07d4da47bf0222cb8151
+      internalID: -539560434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_2
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 41
+        width: 115
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e860791dadc124d469325515efd3b25d
+      internalID: 311767452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_3
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 33
+        width: 116
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57d823e9b4f8a094abaf3c2a8ca1bd0d
+      internalID: -470380192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_4
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 36
+        width: 116
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c180e08f56ba014aba700adb75d5055
+      internalID: -995403898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_5
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 42
+        width: 115
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d7dd18207fd5a74a9b7853cdc6f4a05
+      internalID: 1219329573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_6
+      rect:
+        serializedVersion: 2
+        x: 1618
+        y: 46
+        width: 117
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2113b4ad976e464da28225f42c240f7
+      internalID: -407702818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_7
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 41
+        width: 117
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d07bce2b4e3f644459f0397a50ea2209
+      internalID: -1126821815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_8
+      rect:
+        serializedVersion: 2
+        x: 2129
+        y: 38
+        width: 117
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8c1e6432d2a0084dbca2ce6208aff3b
+      internalID: -679062581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_9
+      rect:
+        serializedVersion: 2
+        x: 2386
+        y: 27
+        width: 117
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7f477c7238aaba459b9e29e350b3d42
+      internalID: 1621179780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_10
+      rect:
+        serializedVersion: 2
+        x: 2641
+        y: 30
+        width: 117
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c266d5435e510a844809ef585b443995
+      internalID: -1626790856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy-Melee-Idle-N_11
+      rect:
+        serializedVersion: 2
+        x: 2896
+        y: 39
+        width: 118
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f2c3ead82a477b44bd4ea217b7665ad
+      internalID: -1582045611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +378,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Enemy-Melee-Idle-N_6: -407702818
+      Enemy-Melee-Idle-N_4: -995403898
+      Enemy-Melee-Idle-N_7: -1126821815
+      Enemy-Melee-Idle-N_2: 311767452
+      Enemy-Melee-Idle-N_3: -470380192
+      Enemy-Melee-Idle-N_0: -797008394
+      Enemy-Melee-Idle-N_9: 1621179780
+      Enemy-Melee-Idle-N_5: 1219329573
+      Enemy-Melee-Idle-N_11: -1582045611
+      Enemy-Melee-Idle-N_10: -1626790856
+      Enemy-Melee-Idle-N_1: -539560434
+      Enemy-Melee-Idle-N_8: -679062581
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
