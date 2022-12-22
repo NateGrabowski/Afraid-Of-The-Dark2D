@@ -110,7 +110,7 @@ public class PlayerHeartRateEffects : MonoBehaviour
                 break;
         }
         IncrementPlayerMovement(heartrate);
-    }
+    }//
 
 
     void IncrementPlayerMovement(float heartrate)
