@@ -16,7 +16,7 @@ public class PlayerHeartRate : MonoBehaviour
     [SerializeField] TextMeshProUGUI displayedHeartRate;
 
 
-    public float currentHeartRate { get; private set; } = 75f;
+    public float currentHeartRate { get; private set; } = 50f;
     public float timeInDarkness; //Trigger used for exponentially increasing heartrate
 
 
