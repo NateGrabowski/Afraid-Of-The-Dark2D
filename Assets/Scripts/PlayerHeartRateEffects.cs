@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using System.Linq;
+using System;
+using UnityEngine.UI;
 
 public class PlayerHeartRateEffects : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI displayedFearStatus;
     [SerializeField] Color color1;
     [SerializeField] Color color2;
-
+    [SerializeField] GameObject RedScreen;
     PlayerHeartRate playerHeartRate;
+    PlayerMovement playerMovement;
     Dictionary<float, bool> FearStatusDict;
     int KeyUsed = 0;
 
     void Start()
     {
         playerHeartRate = GetComponent<PlayerHeartRate>();
+        playerMovement = GetComponent<PlayerMovement>();
         FearStatusDict = new Dictionary<float, bool>()
         {
             { 50f, false },
@@ -33,49 +37,7 @@ public class PlayerHeartRateEffects : MonoBehaviour
         FearStatus(playerHeartRate.currentHeartRate);
     }
 
-    //void FearStatus(float heartrate)
-    //{
-
-    //    //WORKING BUT DOESNT GO DOWN CORRECTLY. THIS ONE ITERATES ONLY ONCE GOING UP
-    //    for (int i = 0; i < FearStatusDict.Count; i++)
-    //    {
-    //        // If heartrate is higher than the current threshold and the threshold is not enabled
-    //        if (heartrate >= FearStatusDict.ElementAt(i).Key && FearStatusDict.ElementAt(i).Value == false)
-    //        {
-    //            // Store the current threshold index
-    //            KeyUsed = i;
-    //            // Enable the current threshold
-    //            FearStatusDict[FearStatusDict.ElementAt(i).Key] = true;
-    //            FearStatusText(FearStatusDict.ElementAt(i).Key);
-    //        }
-    //        // If heartrate is higher than the current threshold and the threshold is not enabled, but the index is not the same as the stored one
-    //        else if (heartrate >= FearStatusDict.ElementAt(i).Key && FearStatusDict.ElementAt(i).Value == false && i != KeyUsed)
-    //        {
-    //            // Disable the previously stored threshold
-    //            FearStatusDict[FearStatusDict.ElementAt(KeyUsed).Key] = false;
-    //            // Enable the current threshold
-    //            FearStatusDict[FearStatusDict.ElementAt(i).Key] = true;
-    //            FearStatusText(FearStatusDict.ElementAt(i).Key);
-    //            // Reset the stored threshold index
-    //            KeyUsed = 0;
-    //        }
-    //        // If heartrate is lower than the current threshold and the threshold is enabled, but the index is not the same as the stored one
-    //        else if (heartrate < FearStatusDict.ElementAt(i).Key && FearStatusDict.ElementAt(i).Value == true && i != KeyUsed)
-    //        {
-    //            // Disable the previously stored threshold
-    //            FearStatusDict[FearStatusDict.ElementAt(KeyUsed).Key] = false;
-    //            // Enable the current threshold
-    //            FearStatusDict[FearStatusDict.ElementAt(i).Key] = true;
-    //            FearStatusText(FearStatusDict.ElementAt(i).Key);
-    //            // Reset the stored threshold index
-    //            KeyUsed = 0;
-
-    //        }
-    //    }
-
-    //}
-
-    void FearStatus(float heartrate)
+    void FearStatus(float heartrate) //Converts Heart Rate for FearManager to Use
     {
         for (int i = 0; i < FearStatusDict.Count; i++)
         {
@@ -86,7 +48,7 @@ public class PlayerHeartRateEffects : MonoBehaviour
                 KeyUsed = i;
                 // Enable the current threshold
                 FearStatusDict[FearStatusDict.ElementAt(i).Key] = true;
-                FearStatusText(FearStatusDict.ElementAt(i).Key);
+                FearStatusManager(FearStatusDict.ElementAt(i).Key);
             }
             // If heartrate is higher than the current threshold and the threshold is not enabled, but the index is not the same as the stored one
             else if (heartrate >= FearStatusDict.ElementAt(i).Key && FearStatusDict.ElementAt(i).Value == false && i != KeyUsed)
@@ -95,7 +57,7 @@ public class PlayerHeartRateEffects : MonoBehaviour
                 FearStatusDict[FearStatusDict.ElementAt(KeyUsed).Key] = false;
                 // Enable the current threshold
                 FearStatusDict[FearStatusDict.ElementAt(i).Key] = true;
-                FearStatusText(FearStatusDict.ElementAt(i).Key);
+                FearStatusManager(FearStatusDict.ElementAt(i).Key);
                 // Reset the stored threshold index
                 KeyUsed = 0;
             }
@@ -106,37 +68,131 @@ public class PlayerHeartRateEffects : MonoBehaviour
                 FearStatusDict[FearStatusDict.ElementAt(i).Key] = false;
                 // Enable the next lower threshold
                 FearStatusDict[FearStatusDict.ElementAt(i - 1).Key] = true;
-                FearStatusText(FearStatusDict.ElementAt(i - 1).Key);
+                FearStatusManager(FearStatusDict.ElementAt(i - 1).Key);
                 // Reset the stored threshold index
                 KeyUsed = 0;
             }
         }
     }
-    void FearStatusText(float heartrate)
+
+    void FearStatusManager(float heartrate) //Manages all Fear Actions based on Heart Rate
     {
-        Debug.Log("FearStatusText " + heartrate);
         switch (heartrate)
         {
             case 250f:
-                displayedFearStatus.text = "Dying";
+                FadeInDeathScreen(heartrate);
+                FearStatusText(heartrate, "Dying");
                 break;
             case 200f:
-                displayedFearStatus.text = "Freaking Out";
+                FadeInDeathScreen(heartrate);
+                FearStatusText(heartrate, "Freaking Out");
                 break;
             case 170f:
-                displayedFearStatus.text = "Panicking";
+                FadeInDeathScreen(heartrate);
+                StartCoroutine(SwitchColors(1));
+                FearStatusText(heartrate, "Panicking");
                 break;
             case 150f:
-                displayedFearStatus.text = "Terrified";
+                FadeInDeathScreen(heartrate);
+                FearStatusText(heartrate, "Terrified");
                 break;
             case 100f:
-                displayedFearStatus.text = "Scared";
+                FadeInDeathScreen(heartrate);
+                FearStatusText(heartrate, "Scared");
                 break;
             case 70f:
-                displayedFearStatus.text = "Nervous";
+                FearStatusText(heartrate, "Nervous");
                 break;
             case 50f:
-                displayedFearStatus.text = "Calms";
+                FearStatusText(heartrate, "Calm");
+                break;
+            default:
+                break;
+        }
+        IncrementPlayerMovement(heartrate);
+    }
+
+
+    void IncrementPlayerMovement(float heartrate)
+    {
+        if (heartrate >= 250)
+        {
+            StartCoroutine(DecreaseSpeed());
+        }
+        else
+        {
+            playerMovement.movementSpeed = 2.5f + (heartrate / 100);
+        }
+    }
+
+    IEnumerator DecreaseSpeed()
+    {
+        float speedBeforeDecrease = playerMovement.movementSpeed;
+        float elapsedTime = 0f;
+        while (elapsedTime < 5f)
+        {
+            playerMovement.movementSpeed = Mathf.Lerp(speedBeforeDecrease, 1.5f, elapsedTime / 5f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        playerMovement.movementSpeed = 1.5f;
+    }
+
+
+
+    void FadeInDeathScreen(float heartrate) // Increments transparency
+    {
+        var color = RedScreen.GetComponent<Image>().color;
+        switch (heartrate)
+        {
+            case 250f:
+                color.a = 0.3f;
+                RedScreen.GetComponent<Image>().color = color;
+                break;
+            case 200f:
+                color.a = 0.1f;
+                RedScreen.GetComponent<Image>().color = color;
+                break;
+            case 170f:
+                color.a = 0.05f;
+                RedScreen.GetComponent<Image>().color = color;
+                break;
+            case 150f:
+                color.a = 0.01f;
+                RedScreen.GetComponent<Image>().color = color;
+                break;
+            case 100f:
+                color.a = 0.0f;
+                RedScreen.GetComponent<Image>().color = color;
+                break;
+        }
+
+    }
+
+    void FearStatusText(float heartrate, string message) //Displays Fear Status
+    {
+        switch (heartrate)
+        {
+            case 250f:
+                displayedFearStatus.text = message;
+                break;
+            case 200f:
+                displayedFearStatus.text = message;
+                break;
+            case 170f:
+                displayedFearStatus.text = message;
+                break;
+            case 150f:
+                displayedFearStatus.text = message;
+                break;
+            case 100f:
+                displayedFearStatus.text = message;
+                break;
+            case 70f:
+                displayedFearStatus.text = message;
+                break;
+            case 50f:
+                displayedFearStatus.text = message;
                 break;
             default:
                 break;
@@ -148,13 +204,19 @@ public class PlayerHeartRateEffects : MonoBehaviour
         for (int i = 0; i < iterations; i++)
         {
             displayedFearStatus.color = color2;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             displayedFearStatus.color = color1;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
         }
     }
-    void TransparentFearStatus()
+    void Fade() //TODO: Not working properly
     {
-        displayedFearStatus.color = new Color(1, 1, 1, 0);
+        // calculate the alpha value that we want to set for the text
+        float alpha = Mathf.Abs(Mathf.Sin(Time.time * 0.5f));
+
+        // set the alpha value of the displayedFearStatus's color
+        displayedFearStatus.color = new Color(displayedFearStatus.color.r, displayedFearStatus.color.g, displayedFearStatus.color.b, alpha);
+
     }
+
 }

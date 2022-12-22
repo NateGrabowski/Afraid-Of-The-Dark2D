@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Character")]
-    [SerializeField] float movementSpeed = 1f;
+    [SerializeField] public float movementSpeed = 2.5f;
     Animator myAnimator;
     Rigidbody2D myRigidbody;
     Vector2 moveInput;
