@@ -15,6 +15,11 @@ public class LightSource : MonoBehaviour
             playerHeartRate = collision.gameObject.GetComponent<PlayerHeartRate>();
             playerHeartRate.timeInDarkness = 0f;
         }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<GhostAI>().GhostDie();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -17,7 +17,6 @@ public class GhostAI : MonoBehaviour
     Rigidbody2D rb;
     bool shouldRotate = true;
     bool isDying;
-
     Vector2 movement;
     public Vector3 direction;
     bool isInChaseRange;
@@ -25,12 +24,15 @@ public class GhostAI : MonoBehaviour
     PlayerHeartRate playerHeartRate;
     bool hasAttacked = false;
     private int attackCounter = 0;
+    public int MaxHealth = 100;
+    int currentHealth;
 
     private void Start()
     {
         target = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         playerHeartRate = FindObjectOfType<PlayerHeartRate>();
+        currentHealth = MaxHealth;
 
     }
 
@@ -49,6 +51,8 @@ public class GhostAI : MonoBehaviour
         {
             Attack();
         }
+
+        // if (ghost comes into contact with light...) { die }
     }
 
     void GhostMovement()
@@ -66,6 +70,15 @@ public class GhostAI : MonoBehaviour
         {
             anim.SetFloat("X", direction.x);
             anim.SetFloat("Y", direction.y);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            GhostDie();
         }
     }
 
@@ -120,10 +133,13 @@ public class GhostAI : MonoBehaviour
         Debug.Log("CheckPlayerRange coroutine stopped");
     }
 
-    void GhostDie()
+    public void GhostDie()
     {
         speed = 0;
         anim.SetTrigger("Die");
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
         Destroy(gameObject, 5f);
+
     }
 }

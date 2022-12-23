@@ -42,4 +42,6 @@ public class PlayerMovement : MonoBehaviour
         moveInput = val.Get<Vector2>();
         myRigidbody.velocity = moveInput * movementSpeed;
     }
+
+
 }
