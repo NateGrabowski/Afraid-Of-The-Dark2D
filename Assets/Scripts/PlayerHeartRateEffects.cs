@@ -138,6 +138,7 @@ public class PlayerHeartRateEffects : MonoBehaviour
         //player dies
         playerMovement.StopMoving();
         anim.SetTrigger("GeraltDying");
+        FindObjectOfType<GameSession>().ProcessPlayerDeath();
     }
 
     void HeartBeatSoundEffect(float heartrate)

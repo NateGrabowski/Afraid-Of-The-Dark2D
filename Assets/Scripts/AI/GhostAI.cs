@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GhostAI : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class GhostAI : MonoBehaviour
     [SerializeField] GameObject ghost;
     [SerializeField] AudioSource ghostScream;
     [SerializeField] AudioSource ghostInRange;
+    [SerializeField] GameObject slashScreen1;
+    [SerializeField] GameObject slashScreen2;
+    public CameraShake cameraShake;
     public float speed;
     public float checkRadius;
     public float attackRadius;
@@ -104,7 +108,7 @@ public class GhostAI : MonoBehaviour
             ghostScream.Play();
             // Stop the enemy's movement
             rb.velocity = Vector2.zero;
-
+            SlashScreen(slashScreen1);
             // Play the attack animation
             anim.SetTrigger("Attack");
 
@@ -118,6 +122,23 @@ public class GhostAI : MonoBehaviour
             StartCoroutine(CheckPlayerRange());
         }
     }
+
+    void SlashScreen(GameObject screen)
+    {
+        var color = screen.GetComponent<Image>().color;
+        color.a = .80f;
+        screen.GetComponent<Image>().color = color;
+        StartCoroutine(cameraShake.Shake(.15f, .2f));
+        StartCoroutine(ScreenSlashed(screen));
+    }
+    IEnumerator ScreenSlashed(GameObject screen)
+    {
+        yield return new WaitForSeconds(1f);
+        var color = screen.GetComponent<Image>().color;
+        color.a = 0f;
+        screen.GetComponent<Image>().color = color;
+    }
+
 
     IEnumerator CheckPlayerRange()
     {
@@ -140,12 +161,11 @@ public class GhostAI : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenAttacks);
         }
 
-        // Reset the attack counter and the hasAttacked flag
+
         attackCounter = 0;
         hasAttacked = false;
 
-        // Print a debug message
-        Debug.Log("CheckPlayerRange coroutine stopped");
+
     }
 
     public void GhostDie()
@@ -155,7 +175,7 @@ public class GhostAI : MonoBehaviour
         anim.SetTrigger("Die");
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 2.5f);
 
     }
 }

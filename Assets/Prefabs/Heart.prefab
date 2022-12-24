@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3129014586235879959}
   - component: {fileID: 3129014586235879944}
+  - component: {fileID: 2140141818}
   m_Layer: 3
   m_Name: CharacterLight (1)
   m_TagString: Untagged
@@ -49,7 +50,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.603
   m_Color: {r: 0.9433962, g: 0.110941544, b: 0.10234961, a: 1}
-  m_Intensity: 1.49
+  m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000008f8079b3c1a4adb5ede2bd847700ae3e
@@ -111,6 +112,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &2140141818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3129014586235879958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394975f3e35b4a4448fbcebc5cf757a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3129014587608706638
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +136,7 @@ GameObject:
   - component: {fileID: 3129014587608706639}
   - component: {fileID: 3129014587608706626}
   - component: {fileID: 3129014587608706625}
-  - component: {fileID: 6340150978607201530}
+  - component: {fileID: 1142152036}
   m_Layer: 8
   m_Name: Heart
   m_TagString: Untagged
@@ -230,13 +243,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.01, y: -0.04}
   serializedVersion: 2
   m_Radius: 0.69880176
---- !u!114 &6340150978607201530
+--- !u!114 &1142152036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,6 +258,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3129014587608706638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 394975f3e35b4a4448fbcebc5cf757a0, type: 3}
+  m_Script: {fileID: 11500000, guid: b46f82c596b82fa48abb6a274f328917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
