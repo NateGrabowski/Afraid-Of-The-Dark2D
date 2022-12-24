@@ -32,7 +32,7 @@ public class PlayerHeartRate : MonoBehaviour
             LeavingDarkness();
         }
         ConstrainHeartRate();
-        displayedHeartRate.text = "bpm = " + Mathf.Round(currentHeartRate).ToString(); //This populates the On Screen heartrate GUI
+        displayedHeartRate.text = Mathf.Round(currentHeartRate).ToString(); //This populates the On Screen heartrate GUI
 
     }
     float InDarkness(float timeInDarkness) //Modifies heartrate based on how long in Darkness

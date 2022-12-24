@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     Animator myAnimator;
     Rigidbody2D myRigidbody;
     Vector2 moveInput;
+    bool isAliveMovement = true;
 
     private void Awake()
     {
@@ -39,8 +40,20 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue val)
     {
-        moveInput = val.Get<Vector2>();
-        myRigidbody.velocity = moveInput * movementSpeed;
+        if (isAliveMovement)
+        {
+            moveInput = val.Get<Vector2>();
+            myRigidbody.velocity = moveInput * movementSpeed;
+        }
+
+    }
+
+    public void StopMoving()
+    {
+        isAliveMovement = false;
+        myRigidbody.velocity = Vector2.zero;
+        movementSpeed = 0;
+        this.enabled = false;
     }
 
 

@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480532055586996737}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.7627125, y: -10.962658, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -122,9 +122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1480532055586996740}
   ghost: {fileID: 1480532055586996737}
-  speed: 2.5
-  checkRadius: 5
-  attackRadius: 1
+  speed: 3
+  checkRadius: 7
+  attackRadius: 2
   attackDamage: 50
   targetLayer:
     serializedVersion: 2

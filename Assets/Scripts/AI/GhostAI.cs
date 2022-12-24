@@ -7,6 +7,8 @@ public class GhostAI : MonoBehaviour
 {
     [SerializeField] Animator anim;
     [SerializeField] GameObject ghost;
+    [SerializeField] AudioSource ghostScream;
+    [SerializeField] AudioSource ghostInRange;
     public float speed;
     public float checkRadius;
     public float attackRadius;
@@ -26,6 +28,7 @@ public class GhostAI : MonoBehaviour
     private int attackCounter = 0;
     public int MaxHealth = 100;
     int currentHealth;
+    bool chaseMusic;
 
     private void Start()
     {
@@ -71,6 +74,16 @@ public class GhostAI : MonoBehaviour
             anim.SetFloat("X", direction.x);
             anim.SetFloat("Y", direction.y);
         }
+        if (isInChaseRange && !chaseMusic && !isDying)
+        {
+            ghostInRange.Play();
+            chaseMusic = true;
+        }
+        else if (!isInChaseRange || isDying)
+        {
+            ghostInRange.Stop();
+            chaseMusic = false;
+        }
     }
 
     public void TakeDamage(int damage)
@@ -87,6 +100,8 @@ public class GhostAI : MonoBehaviour
         // Check if the attack has already been called
         if (!hasAttacked)
         {
+
+            ghostScream.Play();
             // Stop the enemy's movement
             rb.velocity = Vector2.zero;
 
@@ -135,6 +150,7 @@ public class GhostAI : MonoBehaviour
 
     public void GhostDie()
     {
+        isDying = true;
         speed = 0;
         anim.SetTrigger("Die");
         GetComponent<Collider2D>().enabled = false;
