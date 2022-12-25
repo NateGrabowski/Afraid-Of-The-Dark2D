@@ -21,7 +21,6 @@ public class GameSession : MonoBehaviour
 
     public void ProcessPlayerDeath()
     {
-        Debug.Log("process player death");
         StartCoroutine(ResetGameSession());
     }
 

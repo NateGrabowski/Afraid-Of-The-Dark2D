@@ -21,7 +21,7 @@ public class LevelExit : MonoBehaviour
         {
             nextSceneIndex = 0;
         }
-        SceneManager.LoadScene(currentSceneIndex + 1);
+        SceneManager.LoadScene(nextSceneIndex);
         //Load next scene fancy
     }
 }
