@@ -23,7 +23,12 @@ public class LightSource : MonoBehaviour
         {
             collision.gameObject.GetComponent<GhostAI>().GhostDie();
         }
+        if (collision.gameObject.tag == "Sprite")
+        {
+            collision.gameObject.GetComponent<GhostAI>().GhostDie();
+        }
     }
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {
